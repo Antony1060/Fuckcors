@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F**k Cors</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="runQuery">
+            <select class="bg-blue-400 p-2 rounded">
+                <option v-for="m in methods" :key="m" value="m">{{ m }}</option>
+            </select>
+            <input type="text" v-model="url" placeholder="Url">
+            <button :disabled="loading">Go</button>
+
+            <div ref="content"></div>
+        </form>
+        
+        <div ref="content" style="border: 1px solid black; width: 50%; height: 100vh; margin-top: 20px;"><div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+                loading: false,
+                method: "GET",
+                url: "",
+            },
+            methods: {
+                async runQuery() {
+                    if (!this.url) return
+
+                    this.loading = true;
+                    await fetch(`http://localhost:8080/${this.url}`, {
+                        method: this.method,
+                    }).then(async data => {
+                        const body = await data.text();
+                        this.$refs.content.innerText = body;
+                    })
+                    this.loading = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

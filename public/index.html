@@ -31,12 +31,15 @@
                 method: "GET",
                 url: "",
             },
+            computed: {
+				host: () => `${window.location.protocol}//${window.location.host}/`
+            },
             methods: {
                 async runQuery() {
                     if (!this.url) return
 
                     this.loading = true;
-                    await fetch(`http://localhost:8080/${this.url}`, {
+                    await fetch(`${this.host}${this.url}`, {
                         method: this.method,
                     }).then(async data => {
                         const body = await data.text();

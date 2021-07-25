@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "test": "NODE_ENV=test jest --verbose"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "global": "^4.4.0",
     "node-fetch": "^2.6.1",
     "ts-node": "^10.1.0",
     "ts-node-dev": "^1.1.8",
@@ -28,6 +30,11 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "@types/jest": "^26.0.24",
+    "@types/supertest": "^2.0.11",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.4",
+    "ts-jest": "^27.0.4"
   }
 }

@@ -32,7 +32,9 @@
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@types/supertest": "^2.0.11",
+    "form-data": "^4.0.0",
     "jest": "^27.0.6",
+    "jest-environment-node": "^27.0.6",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.4",
     "ts-jest": "^27.0.4"

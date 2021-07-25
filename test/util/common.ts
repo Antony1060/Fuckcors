@@ -1,8 +1,8 @@
 import supertest, { Test } from 'supertest';
 import app from '../../src/app'
 
-export let dumpUrl: string = "https://httpdump.io/czbsw";
-export let contentUrl = "https://antony.cloud";
+let dumpUrl: string = "https://backend.antony.red/dump";
+let contentUrl = "https://antony.cloud";
 
 const appRequest = supertest(app);
 const dumpRequest = supertest(dumpUrl);
@@ -24,15 +24,11 @@ export async function buildConentRequests(content: string) {
     return [server, app];
 }
 
-export function modifyFields(json: { [key: string]: any }, formData: boolean = false) {
-    // remove unnecessary headers ones
-    delete json["invoker_ip"];
-    for(const f of ["Accept", "Cf-Ray", "User-Agent", "X-Forwarded-For", "Cf-Connecting-Ip"])
+export function modifyFields(json: { [key: string]: any }) {
+    // remove unnecessary headers
+    for(const f of ["accept", "cf-ray", "user-agent"])
         if(f in json["headers"])
             delete json["headers"][f]
-
-    if (formData)
-        delete json["raw_post"];
 
     return json;
 }

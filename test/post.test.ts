@@ -1,3 +1,5 @@
+import fs from 'fs'
+import FormData from "form-data"
 import { buildRequests } from "./util/common"
 
 describe("POST", () => {
@@ -18,9 +20,13 @@ describe("POST", () => {
     })
 
     it("with multipart/form-data", async () => {
-        const [server, app] = await buildRequests("post", (test) => test.field("key", "value"))
+        const formData = new FormData();
+        formData.append("key", "value");
+        const [server, app] = await buildRequests("post", (test) => test
+            .set("Content-Type", "multipart/form-data")
+            .send(formData.getBuffer()));
 
-        expect(app).toHaveSameFormData(server);
+        expect(app).toBeSimilarTo(server);
         expect(app).withHttpStatus(200);
     })
 
@@ -42,9 +48,13 @@ describe("POST", () => {
 
 
     it("with file", async () => {
-        const [server, app] = await buildRequests("post", (test) => test.attach("file", "README.md"))
+        const formData = new FormData();
+        formData.append("file", fs.readFileSync("README.md"));
+        const [server, app] = await buildRequests("post", (test) => test
+            .set("Content-Type", "multipart/form-data")
+            .send(formData.getBuffer()));
 
-        expect(app).toHaveSameFormData(server);
+        expect(app).toBeSimilarTo(server);
         expect(app).withHttpStatus(200);
     })
 })

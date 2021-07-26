@@ -1,4 +1,4 @@
-import { buildRequests } from "./util/common"
+import { buildRequests } from "../util/common"
 
 describe("PUT", () => {
     it("with stauts code 200", async () => {

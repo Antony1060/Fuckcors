@@ -1,4 +1,4 @@
-import { buildRequests } from "./util/common"
+import { buildRequests } from "../util/common"
 
 describe("DELETE", () => {
     it("with stauts code 200", async () => {

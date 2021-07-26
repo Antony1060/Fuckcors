@@ -1,6 +1,6 @@
 import fs from 'fs'
 import FormData from "form-data"
-import { buildRequests } from "./util/common"
+import { buildRequests } from "../util/common"
 
 describe("POST", () => {
     it("without form data", async () => {

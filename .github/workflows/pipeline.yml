@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests:
-    name: "Integration test",
+    name: "Integration test"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout code"

@@ -65,8 +65,8 @@ jobs:
 
     - name: "Rollout an application update (:dev)"
       if: github.ref == 'refs/heads/development'
-      run: "kubectl rollout restart -n fuckcors deployment fuckcors"
+      run: "kubectl rollout restart -n fuckcors deployment fuckcors-dev"
 
     - name: "Rollout an application update (:latest)"
       if: github.ref == 'refs/heads/master'
-      run: "kubectl rollout restart -n fuckcors deployment fuckcors-dev"
+      run: "kubectl rollout restart -n fuckcors deployment fuckcors"

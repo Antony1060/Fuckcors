@@ -1,10 +1,9 @@
-FROM node:14
+FROM node:14-alpine3.14
 
 WORKDIR /app
 
 COPY ./package.json .
 COPY ./yarn.lock .
-COPY ./config.json .
 COPY ./tsconfig.json .
 
 RUN yarn install --production

@@ -1,4 +1,4 @@
-name: "CI"
+name: "CI/CD Pipeline"
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests:
-    name: "Integration test"
+    name: "🧪 Integration test"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout code"
@@ -24,3 +24,36 @@ jobs:
       
       - name: "Run tests"
         run: "yarn test"
+  build:
+    name: "🐳 Build"
+    runs-on: ubuntu-latest
+    needs: ["tests"]
+    if:
+      "contains('
+        refs/heads/master
+        refs/heads/development
+      ', github.ref)"
+    steps:
+    - name: "Checkout code"
+      uses: actions/checkout@v2
+
+    - name: "Login to Docker"
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: "Build and Push"
+      uses: docker/build-push-action@v2
+      if: github.ref == 'refs/heads/development'
+      with:
+        push: true
+        tags: antony1060/fuckcors:dev
+
+    - name: "Build and Push"
+      uses: docker/build-push-action@v2
+      if: github.ref == 'refs/heads/master'
+      with:
+        push: true
+        tags: antony1060/fuckcors:latest
+

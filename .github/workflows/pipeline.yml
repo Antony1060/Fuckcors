@@ -47,4 +47,26 @@ jobs:
     - name: "Build and Push (:latest)"
       if: github.ref == 'refs/heads/master'
       run: "docker build -t antony1060/fuckcors:latest . && docker push antony1060/fuckcors:latest"
+  release:
+    name: "🚚 Release"
+    runs-on: ubuntu-latest
+    needs: ["build"]
+    if:
+      "contains('
+        refs/heads/master
+        refs/heads/development
+      ', github.ref)"
+    steps:
+    - name: "Set up kubectl"
+      uses: azure/setup-kubectl@v1
+    
+    - name: "Copy kubernetes config"
+      run: "mkdir ~/.kube && echo '${{ secrets.KUBE_CONFIG }}' | base64 -d > ~/.kube/config && KUBECONFIG=~/.kube/config"
 
+    - name: "Rollout an application update (:dev)"
+      if: github.ref == 'refs/heads/development'
+      run: "kubectl rollout restart -n fuckcors deployment fuckcors"
+
+    - name: "Rollout an application update (:latest)"
+      if: github.ref == 'refs/heads/master'
+      run: "kubectl rollout restart -n fuckcors deployment fuckcors-dev"

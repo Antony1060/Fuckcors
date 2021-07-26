@@ -1,3 +1,5 @@
+import { hostname } from 'os'
+
 import Express from "express";
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -10,7 +12,13 @@ app.use(bodyParser.raw({
     type: "*/*"
 }))
 
-app.use("/", Express.static(__dirname + "/../public"));
+app.use("/", Express.static(__dirname + "/../public", {
+    setHeaders: (res) => {
+        // if we're in kubernetes, we put it in headers, because why notz
+        if(process.env.KUBERNETES_SERVICE_HOST)
+            res.setHeader("Kubernetes-Pod", `pod/${hostname()}`)
+    }
+}));
 
 import handle from './routes/handle'
 app.use("/", handle);

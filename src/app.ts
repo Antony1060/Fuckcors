@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 const app = Express();
-app.use(cors({ origin: '*' }));
+//app.use(cors({ origin: '*' }));
 app.use(bodyParser.raw({
     inflate: true,
     limit: "10mb",

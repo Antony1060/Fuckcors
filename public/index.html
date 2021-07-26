@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/style.css">
     <title>F**k Cors</title>
 </head>
 <body>
     <div id="app">
-        <h2>Fuckcors Development Branch</h2>
+        <h2>Fuckcors Development Branch running on <i>{{ hostname }}</i></h2>
         <form @submit.prevent="runQuery">
             <select class="bg-blue-400 p-2 rounded">
                 <option v-for="m in methods" :key="m" value="m">{{ m }}</option>
@@ -33,7 +34,8 @@
                 url: "",
             },
             computed: {
-				host: () => `${window.location.protocol}//${window.location.host}/`
+				host: () => `${window.location.protocol}//${window.location.host}/`,
+                hostname: () => document.cookie.split(";").map(it => it.trim().split("=")).find(it => it[0] === "Hostname")[1]
             },
             methods: {
                 async runQuery() {

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node src/index.ts",
-    "test": "NODE_ENV=test jest --verbose"
+    "test": "NODE_ENV=test jest"
   },
   "keywords": [],
   "author": "",

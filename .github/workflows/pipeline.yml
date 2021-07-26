@@ -44,7 +44,7 @@ jobs:
       if: github.ref == 'refs/heads/development'
       run: "docker build -t antony1060/fuckcors:dev . && docker push antony1060/fuckcors:dev"
 
-    - name: "Build and Push (:dev)"
+    - name: "Build and Push (:latest)"
       if: github.ref == 'refs/heads/master'
       run: "docker build -t antony1060/fuckcors:latest . && docker push antony1060/fuckcors:latest"
 

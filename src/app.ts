@@ -16,13 +16,9 @@ app.use(bodyParser.raw({
 
 app.use("/", Express.static(__dirname + "/../public", {
     setHeaders: (res) => {
-        // if we're in kubernetes, we put it in headers, because why notz
+        // if we're in kubernetes, we put it in headers, because why not
         if(process.env.KUBERNETES_SERVICE_HOST)
             res.header("Kubernetes-Pod", hostname())
-        
-        res.cookie("Hostname", hostname(), {
-            path: "/"
-        });
     }
 }));
 

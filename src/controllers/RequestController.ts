@@ -15,7 +15,7 @@ export default class RequestController {
     private parseParams() {
         const headers = Object.assign({}, this.request.headers);
         delete headers["host"];
-        const body = Object.keys(this.request.body).length === 0 ? null : this.request.body        
+        const body = Buffer.isBuffer(this.request.body) ? this.request.body : null;        
         return {
             method: this.request.method,
             url: this.request.originalUrl.slice(this.pretty ? 8 : 1),
@@ -38,7 +38,7 @@ export default class RequestController {
             .then(async resp => {
                 let body = null;
                 const host = urlParse(resp.url).origin;
-                const headers = RequestUtil.parseFetchReaders(resp.headers);
+                const headers = RequestUtil.parseFetchHeaders(resp.headers);
                 if (this.pretty && headers["content-type"] && headers["content-type"].startsWith("text/html")) {
                     body = await resp.text();
                     body = RequestUtil.injectReplacerScript(appUrl, host, body);

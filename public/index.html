@@ -11,8 +11,8 @@
     <div id="app">
         <h2>Fuckcors.app <span v-if="window.location.host.startsWith('dev.')">Development Branch</span></h2>
         <form @submit.prevent="runQuery">
-            <select class="bg-blue-400 p-2 rounded">
-                <option v-for="m in methods" :key="m" value="m">{{ m }}</option>
+            <select class="bg-blue-400 p-2 rounded" v-model="method">
+                <option v-for="m in methods" :key="m" :value="m">{{ m }}</option>
             </select>
             <input type="text" v-model="url" placeholder="Url">
             <button :disabled="loading">Go</button>
@@ -41,6 +41,7 @@
                 async runQuery() {
                     if (!this.url) return
 
+                    console.log(this.method)
                     this.loading = true;
                     await fetch(`${this.host}${this.url}`, {
                         method: this.method,

@@ -1,5 +1,5 @@
-import fetch, { Headers } from 'node-fetch'
 import { IncomingHttpHeaders } from 'http';
+import fetch, { Headers, Response } from 'node-fetch'
 
 const accessibleHeaders = ["content-type", "last-modified", "content-language", "cache-control", "expires", "pragma", "set-cookie"];
 
@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
 
 export default class RequestUtil {
 
-    static fetchUrl(url: string, method: string, headers: IncomingHttpHeaders, body: any) {
+    static fetchUrl(url: string, method: string, headers: IncomingHttpHeaders, body: Buffer): Promise<Response> {
         const options: { [key: string]: any } = {
             method,
             headers
@@ -43,14 +43,14 @@ export default class RequestUtil {
         return fetch(url, options);
     }
 
-    static parseFetchHeaders(headers: Headers) {
+    static parseFetchHeaders(headers: Headers): { [key: string]: string } {
         // Suggested by (luc)[https://github.com/lucemans]
         return Object.assign({}, ...Object.keys(headers.raw()).filter(it => accessibleHeaders.includes(it.toLowerCase())).map(it => ({[it]: headers.get(it)})))
     }
 
     // this will inject some js into the html page to replace all `link, script, img and a` tag sources to also go through the proxy
     // please if anyone has a better implementation of this, open a pull request
-    static injectReplacerScript(host: string, htmlBody: string) {
+    static injectReplacerScript(host: string, htmlBody: string): string {
         const arr = htmlBody.split("<head>");
         arr[1] = REPLACER_JAVASCRIPT(host) + arr[1];
         return arr.join("<head>")

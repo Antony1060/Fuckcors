@@ -24,14 +24,14 @@ export default class RequestController {
         }
     }
 
-    handleRequest() {
+    handleRequest(): Promise<{ success: boolean, error?: string }> {
         const params = this.parseParams();
         
         if (!validUrl.isWebUri(params.url))
-            return { success: false, error: "Invalid url" }
+            return Promise.resolve({ success: false, error: "Invalid url" })
 
         if (this.request.get("host") === urlParse(params.url).host)
-            return { success: false, error: "Can't make a request to itself" }
+            return Promise.resolve({ success: false, error: "Can't make a request to itself" })
 
         return RequestUtil.fetchUrl(params.url, params.method, params.headers, params.body)
             .then(async resp => {

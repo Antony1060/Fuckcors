@@ -33,7 +33,6 @@ export default class RequestController {
         if (this.request.get("host") === urlParse(params.url).host)
             return { success: false, error: "Can't make a request to itself" }
 
-        const appUrl = `${this.request.protocol}://${this.request.get("host")}`
         return RequestUtil.fetchUrl(params.url, params.method, params.headers, params.body)
             .then(async resp => {
                 let body = null;
@@ -41,7 +40,7 @@ export default class RequestController {
                 const headers = RequestUtil.parseFetchHeaders(resp.headers);
                 if (this.pretty && headers["content-type"] && headers["content-type"].startsWith("text/html")) {
                     body = await resp.text();
-                    body = RequestUtil.injectReplacerScript(appUrl, host, body);
+                    body = RequestUtil.injectReplacerScript(host, body);
                 } else body = await resp.buffer()
 
                 this.response.set(headers);

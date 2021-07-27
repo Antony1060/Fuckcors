@@ -3,8 +3,8 @@ import { IncomingHttpHeaders } from 'http';
 
 const accessibleHeaders = ["content-type", "last-modified", "content-language", "cache-control", "expires", "pragma", "set-cookie"];
 
-const REPLACER_JAVASCRIPT = (appUrl: string, host: string) => `
-<!-- Injected by ${appUrl} type app to ensure static resources load correctly -->
+const REPLACER_JAVASCRIPT = (host: string) => `
+<!-- Injected by fuckcors.app type app to ensure static resources load correctly -->
 <script>
 window.addEventListener('load', () => {
     const changable = {
@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
                 let propVal = propValItem.nodeValue
                 if (propVal.startsWith("http://") || propVal.startsWith("https://")) continue
                 if (propVal.startsWith("/")) propVal = propVal.slice(1);
-                el[prop] = "${appUrl}/pretty/${host}/" + propVal;
+                el[prop] = window.location.protocol + "//" + window.location.host + "/pretty/${host}/" + propVal;
             }
         }
     }
@@ -50,9 +50,9 @@ export default class RequestUtil {
 
     // this will inject some js into the html page to replace all `link, script, img and a` tag sources to also go through the proxy
     // please if anyone has a better implementation of this, open a pull request
-    static injectReplacerScript(appUrl: string, host: string, htmlBody: string) {
+    static injectReplacerScript(host: string, htmlBody: string) {
         const arr = htmlBody.split("<head>");
-        arr[1] = REPLACER_JAVASCRIPT(appUrl, host) + arr[1];
+        arr[1] = REPLACER_JAVASCRIPT(host) + arr[1];
         return arr.join("<head>")
     }
 

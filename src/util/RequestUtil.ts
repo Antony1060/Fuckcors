@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
                 let propVal = propValItem.nodeValue
                 if (propVal.startsWith("http://") || propVal.startsWith("https://")) continue
                 if (propVal.startsWith("/")) propVal = propVal.slice(1);
-                el[prop] = "${appUrl}/${host}/" + propVal;
+                el[prop] = "${appUrl}/pretty/${host}/" + propVal;
             }
         }
     }
@@ -43,7 +43,7 @@ export default class RequestUtil {
         return fetch(url, options);
     }
 
-    static parseFetchReaders(headers: Headers) {
+    static parseFetchHeaders(headers: Headers) {
         // Suggested by (luc)[https://github.com/lucemans]
         return Object.assign({}, ...Object.keys(headers.raw()).filter(it => accessibleHeaders.includes(it.toLowerCase())).map(it => ({[it]: headers.get(it)})))
     }

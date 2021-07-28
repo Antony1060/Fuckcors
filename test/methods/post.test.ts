@@ -1,5 +1,6 @@
-import fs from 'fs'
 import FormData from "form-data"
+import fs from 'fs'
+
 import { buildRequests } from "../util/common"
 
 describe("POST", () => {

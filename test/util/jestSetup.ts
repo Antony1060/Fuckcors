@@ -1,7 +1,9 @@
 import { Response } from "supertest";
+
 import { modifyFields } from "./common";
 
 jest.setTimeout(60000)
+jest.spyOn(console, "log").mockImplementation(() => {});
 
 declare global {
     namespace jest {

@@ -1,6 +1,6 @@
-import supertest, { Response, Test } from 'supertest';
+import supertest, { Response, Test } from "supertest";
 
-import app from '../../src/app'
+import app from "../../src/app"
 
 const dumpUrl = "https://backend.antony.red/dump";
 const contentUrl = "https://antony.cloud";

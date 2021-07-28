@@ -1,5 +1,5 @@
-import { IncomingHttpHeaders } from 'http';
-import fetch, { Headers, Response } from 'node-fetch'
+import { IncomingHttpHeaders } from "http";
+import fetch, { Headers, Response } from "node-fetch"
 
 const accessibleHeaders = ["content-type", "last-modified", "content-language", "cache-control", "expires", "pragma", "set-cookie"];
 

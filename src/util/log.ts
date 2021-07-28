@@ -11,9 +11,9 @@ export const Levels = {
 
 export const time = (): string => {
     const date = new Date()
-    const h = date.getHours().toString().padStart(2, '0');
-    const min = date.getMinutes().toString().padStart(2, '0');
-    const s = date.getSeconds().toString().padStart(2, '0');
+    const h = date.getHours().toString().padStart(2, "0");
+    const min = date.getMinutes().toString().padStart(2, "0");
+    const s = date.getSeconds().toString().padStart(2, "0");
     return `${h}:${min}:${s}`
 }
 

@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import urlParse from 'url-parse';
-import validUrl from 'valid-url';
+import { Request, Response } from "express";
+import urlParse from "url-parse";
+import validUrl from "valid-url";
 
-import RequestUtil from '../util/RequestUtil'
+import RequestUtil from "../util/RequestUtil"
 
 export default class RequestController {
 

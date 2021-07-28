@@ -1,13 +1,13 @@
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import bodyParser from "body-parser";
+import cors from "cors";
 import Express from "express";
-import { hostname } from 'os'
+import { hostname } from "os"
 
-import { Levels, log } from './util/log';
+import { Levels, log } from "./util/log";
 
 const app = Express();
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.raw({
     inflate: true,
     limit: "10mb",
@@ -27,7 +27,7 @@ app.use("/", Express.static(__dirname + "/../public", {
     }
 }));
 
-import handle from './routes/handle'
+import handle from "./routes/handle"
 app.use("/", handle);
 
 export default app

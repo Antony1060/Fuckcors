@@ -1,5 +1,5 @@
 import FormData from "form-data"
-import fs from 'fs'
+import fs from "fs"
 
 import { buildRequests } from "../util/common"
 

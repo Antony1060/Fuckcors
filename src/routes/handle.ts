@@ -1,7 +1,7 @@
 import { Request, Response,Router } from "express";
 
-import RequestController from '../controllers/RequestController'
-import HttpUtil from '../util/HttpUtil'
+import RequestController from "../controllers/RequestController"
+import HttpUtil from "../util/HttpUtil"
 import { Levels, log } from "../util/log";
 
 const router = Router()

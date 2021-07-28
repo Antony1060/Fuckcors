@@ -1,4 +1,4 @@
-import { buildConentRequests, buildRequests } from '../util/common';
+import { buildConentRequests, buildRequests } from "../util/common";
 
 describe("GET", () => {
 

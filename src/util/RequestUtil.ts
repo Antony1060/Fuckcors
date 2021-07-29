@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
 
 export default class RequestUtil {
 
-    static fetchUrl(url: string, method: string, headers: IncomingHttpHeaders, body: Buffer): Promise<Response> {
+    static fetchUrl(url: string, method: string, headers: IncomingHttpHeaders, body: Buffer | null): Promise<Response> {
         const options: { [key: string]: any } = {
             method,
             headers

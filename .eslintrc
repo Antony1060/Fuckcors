@@ -1,11 +1,14 @@
 {
     "root": true,
+    "ignorePatterns": "*.test.[jt]s",
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "@typescript-eslint",
-        "simple-import-sort"
+        "simple-import-sort",
+        "radar"
     ],
     "extends": [
+        "plugin:radar/recommended",
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"

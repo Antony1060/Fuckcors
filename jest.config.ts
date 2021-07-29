@@ -1,4 +1,4 @@
-import type { Config } from '@jest/types'
+import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
     transform: {
@@ -7,6 +7,6 @@ const config: Config.InitialOptions = {
     testMatch: ["<rootDir>/test/**/*.test.[jt]s"],
     setupFilesAfterEnv: ["<rootDir>/test/util/jestSetup.ts"],
     slowTestThreshold: 60
-}
+};
 
-export default config
+export default config;

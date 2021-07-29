@@ -1,6 +1,6 @@
-import supertest, { Response, Test } from 'supertest';
+import supertest, { Response, Test } from "supertest";
 
-import app from '../../src/app'
+import app from "../../src/app";
 
 const dumpUrl = "https://backend.antony.red/dump";
 const contentUrl = "https://antony.cloud";
@@ -32,7 +32,7 @@ export function modifyFields(json: { [key: string]: any }): { [key: string]: any
     // remove unnecessary headers
     for(const f of ["accept", "cf-ray", "user-agent", "x-forwarded-for", "cf-connecting-ip"])
         if(f in json["headers"])
-            delete json["headers"][f]
+            delete json["headers"][f];
 
     return json;
 }

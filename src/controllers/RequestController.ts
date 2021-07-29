@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import urlParse from 'url-parse';
-import validUrl from 'valid-url';
+import { Request, Response } from "express";
+import urlParse from "url-parse";
+import validUrl from "valid-url";
 
-import RequestUtil from '../util/RequestUtil'
+import RequestUtil from "../util/RequestUtil";
 
 export default class RequestController {
 
@@ -21,17 +21,17 @@ export default class RequestController {
             url: this.request.originalUrl.slice(this.pretty ? 8 : 1),
             headers,
             body
-        }
+        };
     }
 
     handleRequest(): Promise<{ success: boolean, error?: string }> {
         const params = this.parseParams();
         
         if (!validUrl.isWebUri(params.url))
-            return Promise.resolve({ success: false, error: "Invalid url" })
+            return Promise.resolve({ success: false, error: "Invalid url" });
 
         if (this.request.get("host") === urlParse(params.url).host)
-            return Promise.resolve({ success: false, error: "Can't make a request to itself" })
+            return Promise.resolve({ success: false, error: "Can't make a request to itself" });
 
         return RequestUtil.fetchUrl(params.url, params.method, params.headers, params.body)
             .then(async resp => {
@@ -41,16 +41,16 @@ export default class RequestController {
                 if (this.pretty && headers["content-type"] && headers["content-type"].startsWith("text/html")) {
                     body = await resp.text();
                     body = RequestUtil.injectReplacerScript(host, body);
-                } else body = await resp.buffer()
+                } else body = await resp.buffer();
 
                 this.response.set(headers);
                 this.response.status(resp.status).send(body);
 
-                return { success: true }
+                return { success: true };
             })
             .catch(err => {
-                return { success: false, error: err.message }
-            })
+                return { success: false, error: err.message };
+            });
     }
 
 }

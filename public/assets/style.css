@@ -1,3 +1,10 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+#content {
+    border: 1px solid black;
+    width: 50%;
+    height: 100vh;
+    margin-top: 20px;
+}

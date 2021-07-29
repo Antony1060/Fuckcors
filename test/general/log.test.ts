@@ -22,4 +22,4 @@ describe("LOG", () => {
         expect(log(Levels.DEBUG));
         expect(consoleLog).toHaveBeenCalledWith(`${time()} ${Levels.DEBUG} `);
     });
-})
+});

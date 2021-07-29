@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { promises as fs } from "fs";
 import supertest from "supertest";
 
 import app from "../../src/app";
@@ -12,7 +12,7 @@ describe("FRONTEND", () => {
                 expect(res.text)
                     .toEqual(await fs.readFile("public/index.html", { encoding: "utf-8" }));
                 done();
-            })
+            });
     });
 
     it("should grab assets", (done) => {
@@ -22,7 +22,7 @@ describe("FRONTEND", () => {
                 if(err) return done(err);
                 expect(res.text)
                     .toEqual(await fs.readFile("public/assets/style.css", { encoding: "utf-8" }));
-                done()
-            })
-    })
-})
+                done();
+            });
+    });
+});

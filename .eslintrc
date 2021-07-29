@@ -1,16 +1,23 @@
 {
     "root": true,
+    "ignorePatterns": "*.test.[jt]s",
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "@typescript-eslint",
-        "simple-import-sort"
+        "simple-import-sort",
+        "radar"
     ],
     "extends": [
+        "plugin:radar/recommended",
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "quotes": ["error", "double"],
+        "semi": ["error", "always"],
+        "linebreak-style": ["error", "unix"],
+        "indent": ["error", 4],
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error",
         "@typescript-eslint/no-empty-function": "off",

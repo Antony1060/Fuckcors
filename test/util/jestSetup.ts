@@ -2,7 +2,7 @@ import { Response } from "supertest";
 
 import { modifyFields } from "./common";
 
-jest.setTimeout(60000)
+jest.setTimeout(60000);
 jest.spyOn(console, "log").mockImplementation(() => {});
 
 declare global {
@@ -28,7 +28,7 @@ expect.extend({
             {
                 pass: false,
                 message: () => `Requests should mostly match. (recieved status=${recieved.statusCode} expected status=${other.statusCode})`
-            }
+            };
     },
     
     toMatchContent(recieved: Response, other: Response): jest.CustomMatcherResult {
@@ -40,7 +40,7 @@ expect.extend({
             {
                 pass: false,
                 message: () => `Request content should match. (recieved status=${recieved.statusCode} expected status=${other.statusCode})`
-            }
+            };
     },
 
     withHttpStatus(recieved: Response, statusCode: number): jest.CustomMatcherResult {
@@ -52,6 +52,6 @@ expect.extend({
             {
                 pass: false,
                 message: () => `Request should return with status code '${statusCode}'`
-            }
+            };
     }
 });

@@ -8,19 +8,19 @@ export default class HttpUtils {
         return this.response.status(code).json({
             status: code,
             ...json
-        })
+        });
     }
 
     respondOk(json = {}): Response {
-        return this.respondCode(200, json)
+        return this.respondCode(200, json);
     }
 
     respondBadRequest(json = {}): Response {
-        return this.respondCode(400, json)
+        return this.respondCode(400, json);
     }
 
     respondServerError(json = {}): Response {
-        return this.respondCode(500, json)
+        return this.respondCode(500, json);
     }
 
 }

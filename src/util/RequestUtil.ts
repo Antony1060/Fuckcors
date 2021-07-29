@@ -1,5 +1,5 @@
 import { IncomingHttpHeaders } from "http";
-import fetch, { Headers, Response } from "node-fetch"
+import fetch, { Headers, Response } from "node-fetch";
 
 const accessibleHeaders = ["content-type", "last-modified", "content-language", "cache-control", "expires", "pragma", "set-cookie"];
 
@@ -34,7 +34,7 @@ export default class RequestUtil {
         const options: { [key: string]: any } = {
             method,
             headers
-        }
+        };
 
         if(!["GET", "HEAD"].includes(method)) {
             options.body = body;
@@ -45,7 +45,7 @@ export default class RequestUtil {
 
     static parseFetchHeaders(headers: Headers): { [key: string]: string } {
         // Suggested by (luc)[https://github.com/lucemans]
-        return Object.assign({}, ...Object.keys(headers.raw()).filter(it => accessibleHeaders.includes(it.toLowerCase())).map(it => ({[it]: headers.get(it)})))
+        return Object.assign({}, ...Object.keys(headers.raw()).filter(it => accessibleHeaders.includes(it.toLowerCase())).map(it => ({[it]: headers.get(it)})));
     }
 
     // this will inject some js into the html page to replace all `link, script, img and a` tag sources to also go through the proxy
@@ -53,7 +53,7 @@ export default class RequestUtil {
     static injectReplacerScript(host: string, htmlBody: string): string {
         const arr = htmlBody.split("<head>");
         arr[1] = REPLACER_JAVASCRIPT(host) + arr[1];
-        return arr.join("<head>")
+        return arr.join("<head>");
     }
 
 }

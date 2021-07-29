@@ -7,7 +7,7 @@ describe("GET", () => {
 
         expect(app).toBeSimilarTo(server);
         expect(app).withHttpStatus(200);
-    })
+    });
 
     it("with status code 400", async () => {
         const [server, app] = await buildRequests("get", (test) => test.query({
@@ -16,7 +16,7 @@ describe("GET", () => {
 
         expect(app).toBeSimilarTo(server);
         expect(app).withHttpStatus(400);
-    })
+    });
 
     it("with query paramaters", async () => {
         const [server, app] = await buildRequests("get", (test) => test.query({
@@ -26,19 +26,19 @@ describe("GET", () => {
 
         expect(app).toBeSimilarTo(server);
         expect(app).withHttpStatus(200);
-    })
+    });
 
     it("content (png)", async () => {
-        const [server, app] = await buildConentRequests("fuckcors_sample.png")
+        const [server, app] = await buildConentRequests("fuckcors_sample.png");
 
         expect(app).toMatchContent(server);
         expect(app).withHttpStatus(200);
-    })
+    });
 
     it("content (mp4)", async () => {
-        const [server, app] = await buildConentRequests("fuckcors_sample.mp4")
+        const [server, app] = await buildConentRequests("fuckcors_sample.mp4");
 
         expect(app).toMatchContent(server);
         expect(app).withHttpStatus(200);
-    })
-})
+    });
+});

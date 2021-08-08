@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node src/index.ts",
-    "test": "NODE_ENV=test DEBUG=true jest --verbose",
+    "test": "jest --verbose",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix ."
   },

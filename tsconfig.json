@@ -4,9 +4,6 @@
     "resolveJsonModule": true,
     "lib": ["es2020"],
     "downlevelIteration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "strict": true
+    "strict": true,
   }
 }

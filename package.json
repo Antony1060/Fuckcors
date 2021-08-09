@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node src/index.ts",
     "test": "jest --verbose",

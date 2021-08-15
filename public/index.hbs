@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/main.js" defer></script>
+    <title>F**k Cors</title>
+</head>
+<body>
+    <div id="app">
+        {{#if dev}}
+            <span>Development</span>
+            {{#if kube_pod}}
+                <span>Running in {{ kube_pod }}</span>
+            {{/if}}
+        {{/if}}
+        <h2>Fuckcors.app</h2>
+        <form>
+            <select class="bg-blue-400 p-2 rounded" v-model="method">
+                <option value="GET">GET</option>
+            </select>
+            <input type="text" v-model="url" placeholder="Url">
+            <button>Go</button>
+
+            <div ref="content"></div>
+        </form>
+        
+        <div ref="content" id="content"><div>
+    </div>
+</body>
+</html>

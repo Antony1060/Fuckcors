@@ -18,16 +18,18 @@
         {{/if}}
         <h2>Fuckcors.app</h2>
         <form>
-            <select class="bg-blue-400 p-2 rounded" v-model="method">
+            <select id="method">
                 <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
             </select>
-            <input type="text" v-model="url" placeholder="Url">
-            <button>Go</button>
-
-            <div ref="content"></div>
+            <input type="text" placeholder="Url" id="url">
+            <button id="submit">Go</button>
         </form>
         
-        <div ref="content" id="content"><div>
+        <div id="content"><div>
     </div>
 </body>
 </html>

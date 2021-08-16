@@ -7,4 +7,5 @@
     width: 50%;
     height: 100vh;
     margin-top: 20px;
+    overflow: auto;
 }

@@ -1,6 +1,6 @@
 {
     "root": true,
-    "ignorePatterns": "*.test.[jt]s",
+    "ignorePatterns": ["public/**","*.test.[jt]s"],
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "@typescript-eslint",

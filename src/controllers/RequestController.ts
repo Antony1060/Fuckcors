@@ -38,14 +38,16 @@ export default class RequestController {
                 let body = null;
                 const host = urlParse(resp.url).origin;
                 const headers = RequestUtil.parseFetchHeaders(resp.headers);
+                this.response.set(headers);
+                this.response.status(resp.status);
                 if (this.pretty && headers["content-type"] && headers["content-type"].startsWith("text/html")) {
                     body = await resp.text();
                     body = RequestUtil.injectReplacerScript(host, body);
-                } else body = await resp.buffer();
+                    this.response.send(body);
+                    return { success: true };
+                }
 
-                this.response.set(headers);
-                this.response.status(resp.status).send(body);
-
+                resp.body.pipe(this.response);
                 return { success: true };
             })
             .catch(err => {

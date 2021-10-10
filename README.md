@@ -2,7 +2,7 @@
 A simple http proxy that removes CORS headers without sacrificing security.
 
 ## Public preview
-### Note: This is not recommended for use in 
+### Note: This is not recommended for use in production
 
 The preview is available [here](https://fuckcors.app) and as a ratelimit of 60 requests/second with a burst of 10.
 

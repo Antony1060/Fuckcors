@@ -3,7 +3,7 @@ import supertest, { Response, Test } from "supertest";
 import app from "../../src/app";
 
 const dumpUrl = "https://backend.antony.red/dump";
-const contentUrl = "https://antony.cloud";
+const contentUrl = "https://media.antony.red";
 
 const appRequest = supertest(app);
 const dumpRequest = supertest(dumpUrl);
